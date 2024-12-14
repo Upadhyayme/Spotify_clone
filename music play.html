@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Play Button</title>
+    <style>
+        .play-button {
+            width: 60px;
+            height: 60px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        .play-button:hover {
+            background-color: #45a049;
+        }
+        .play-button svg {
+            fill: white;
+        }
+    </style>
+</head>
+<body>
+    <button id="musicPlayButton" class="play-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+        </svg>
+    </button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const playButton = document.getElementById('musicPlayButton');
+            const audio = new Audio('C:/Users/upadh/project/.vscode/song/1.mp3'); // Replace with your audio file path
+
+            let isPlaying = false;
+
+            playButton.addEventListener('click', () => {
+                const playIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                </svg>`;
+                
+                const pauseIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                </svg>`;
+
+                if (isPlaying) {
+                    audio.pause();
+                    playButton.innerHTML = playIcon;
+                    playButton.style.backgroundColor = '#4CAF50';
+                } else {
+                    audio.play();
+                    playButton.innerHTML = pauseIcon;
+                    playButton.style.backgroundColor = '#FF5722';
+                }
+
+                isPlaying = !isPlaying;
+            });
+        });
+    </script>
+</body>
+</html>
